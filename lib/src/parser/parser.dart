@@ -20,6 +20,7 @@ class ScoreParser{
 
   ScoreParser._internal();
 
+  /// Parses a MusicXML file and returns a [Score] object
   Future<Score> parseMxl(String path) async {
     XmlDocument musicXmlDocument = await unzipMxl(path);
     return parseDocument(musicXmlDocument);
@@ -30,7 +31,7 @@ class ScoreParser{
     return parseDocument(doc);
   }
 
-  /// Unzips Mxl files and returns the score.xml file as an [XmlDocument]
+  /// Unzips Mxl files and returns the last xml file as an [XmlDocument]
   Future<XmlDocument> unzipMxl(String path) async {
     final bytes = await File(path).readAsBytes();
     final archive = ZipDecoder().decodeBytes(bytes);
@@ -54,18 +55,18 @@ class ScoreParser{
   Score parseDocument(XmlDocument xmlDocument){
     String title = xmlDocument.xpathEvaluate('score-partwise/work/work-title').string;
     String composer = xmlDocument.xpathEvaluate('score-partwise/identification/creator').string;
-    List<Part> parts = xmlDocument.xpath("score-partwise/part").map((partNode) => parsePartXml(partNode)).toList();
+    List<Part> parts = xmlDocument.xpath("score-partwise/part").map((partNode) => _parsePartXml(partNode)).toList();
     return Score(title: title, composer: composer, parts: parts);
   }
 
-  Part parsePartXml(XmlNode partXml){
+  Part _parsePartXml(XmlNode partXml){
     String id = partXml.xpathEvaluate("@id").string;
-    List<Measure> measures = partXml.xpath("measure").map((measureNode) => parseMeasureXml(measureNode)).toList();
+    List<Measure> measures = partXml.xpath("measure").map((measureNode) => _parseMeasureXml(measureNode)).toList();
     return Part(id: id, measures: measures);
   }
 
   /// Parses a measure xml node into a [Measure]
-  Measure parseMeasureXml(XmlNode measureXml){
+  Measure _parseMeasureXml(XmlNode measureXml){
     int number = measureXml.xpathEvaluate("@number").number.toInt();
     Attributes? attributes;
 
@@ -74,19 +75,19 @@ class ScoreParser{
       switch(xmlNode.localName){
         case "note":
           if(xmlNode.xpath("grace").isNotEmpty) break;
-          items.add(parseNoteXml(xmlNode));
+          items.add(_parseNoteXml(xmlNode));
           break;
         case "barline":
-        items.add(parseBarline(xmlNode));
+        items.add(_parseBarline(xmlNode));
           break;
         case "backup":
-        items.add(parseBackup(xmlNode));
+        items.add(_parseBackup(xmlNode));
           break;
         case "harmony":
-        items.add(parseHarmony(xmlNode));
+        items.add(_parseHarmony(xmlNode));
           break;
         case "attributes":
-          attributes = parseAttribute(xmlNode);
+          attributes = _parseAttribute(xmlNode);
           break;
         default:
           break;
@@ -97,7 +98,7 @@ class ScoreParser{
   }
 
   /// Parses a note xml node into a [Note]
-  Note parseNoteXml(XmlNode noteXml){
+  Note _parseNoteXml(XmlNode noteXml){
     Pitch? pitch = noteXml.xpath("pitch").isNotEmpty ? Pitch(step: noteXml.xpathEvaluate("pitch/step").string,
                         octave: noteXml.xpathEvaluate("pitch/octave").number.toInt(),
                         alter: noteXml.xpathEvaluate("pitch/alter").string.isNotEmpty ? noteXml.xpathEvaluate("pitch/alter").number.toInt() : 0) : null;
@@ -127,7 +128,7 @@ class ScoreParser{
   }
 
   /// Parses an attribute xml node into an [Attributes]
-  Attributes parseAttribute(XmlNode attributeNode){
+  Attributes _parseAttribute(XmlNode attributeNode){
     int? divisions = attributeNode.xpath("divisions").isNotEmpty ? attributeNode.xpathEvaluate("divisions").number.toInt() : null;
     MusicKey? key = attributeNode.xpath("key").isNotEmpty ? MusicKey(fifths: attributeNode.xpathEvaluate("key/fifths").number.toInt()) : null;
     Time? time = attributeNode.xpath("time").isNotEmpty ? Time(beats: attributeNode.xpathEvaluate("time/beats").number.toInt(), beatType: attributeNode.xpathEvaluate("time/beat-type").number.toInt()) : null;
@@ -138,14 +139,14 @@ class ScoreParser{
   }
   
   /// Parses a barline xml node into a [Barline]
-  MeasureItem parseBarline(XmlElement xmlNode) {
+  MeasureItem _parseBarline(XmlElement xmlNode) {
     String location = xmlNode.xpathEvaluate("@location").string;
     String type = xmlNode.xpathEvaluate("bar-style").string;
     String? repeat = xmlNode.xpath("repeat").isNotEmpty ? xmlNode.xpathEvaluate("repeat/@direction").string : null;
     return Barline(type: type, location: location, repeatType: repeat);
   }
   
-  MeasureItem parseHarmony(XmlElement xmlNode) {
+  MeasureItem _parseHarmony(XmlElement xmlNode) {
     String root = xmlNode.xpathEvaluate("root/root-step").string;
     int? rootAlter = xmlNode.xpath("root/root-alter").isNotEmpty ? xmlNode.xpathEvaluate("root/root-alter").number.toInt() : null;
     String kind = xmlNode.xpathEvaluate("kind").string;
@@ -156,7 +157,7 @@ class ScoreParser{
     return Harmony(root: root, rootAlter: rootAlter, kind: kind, dergree: degree, degreeAlter: degreeAlter, degreeType: degreeKind, bassStep: bassStep);
   }
 
-  MeasureItem parseBackup(XmlElement xmlNode) {
+  MeasureItem _parseBackup(XmlElement xmlNode) {
     int duration = xmlNode.xpathEvaluate("duration").number.toInt();
     return Backup(duration: duration);
   }
