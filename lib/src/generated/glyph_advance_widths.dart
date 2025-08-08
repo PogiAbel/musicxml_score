@@ -1,6 +1,6 @@
-import 'glyph-definitions.dart';
+import 'glyph_definitions.dart';
 
-const GLYPH_ADVANCE_WIDTHS = <Glyph, double>{
+const glyphAdvanceWidths = <Glyph, double>{
    Glyph.fourStringTabClef: 1.084,
    Glyph.sixStringTabClef: 1.636,
    Glyph.accSagittal11LargeDiesisDown: 1.376,

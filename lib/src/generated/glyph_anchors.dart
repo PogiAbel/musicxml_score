@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'glyph-definitions.dart';
+import 'glyph_definitions.dart';
 
 class GlyphAnchor {
 
@@ -79,7 +79,7 @@ class GlyphAnchor {
     }
 }
 
-const GLYPH_ANCHORS = <Glyph, GlyphAnchor>{
+const glyphAnchors = <Glyph, GlyphAnchor>{
    Glyph.accidental1CommaFlat: GlyphAnchor(cutOutSE: Offset(0.708, 0.38)),
    Glyph.accidental1CommaSharp: GlyphAnchor(cutOutNW: Offset(0.896, -1.512), cutOutSE: Offset(1.088, -0.888), cutOutSW: Offset(0.112, 0.928)),
    Glyph.accidental2CommaFlat: GlyphAnchor(cutOutSE: Offset(1, -0.768)),

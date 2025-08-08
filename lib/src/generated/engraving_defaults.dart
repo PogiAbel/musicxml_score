@@ -34,4 +34,4 @@ class EngravingDefaults {
   final double hBarThickness = 1;
 }
 
-const ENGRAVING_DEFAULTS = EngravingDefaults();
+const engravingDefaults = EngravingDefaults();

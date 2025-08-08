@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../generated/glyph-bboxes.dart';
-import '../generated/glyph-definitions.dart';
+import '../generated/glyph_bboxes.dart';
+import '../generated/glyph_definitions.dart';
 
 /// The different types of [Drawable] objects (this project supports)
 enum DrawableType{
@@ -124,8 +124,8 @@ class GlyphObject extends Drawable{
   late GlyphBBox gbbox;
 
   GlyphObject({required this.glyph,required this.textStyle, required super.x, required super.y, super.type = DrawableType.glyph}){
-    glyphString = GLYPH_FONTCODE_MAP[glyph]!;
-    gbbox = (GLYPH_BBOXES[glyph]! * (textStyle.fontSize!/4));
+    glyphString = glyphFontcodeMap[glyph]!;
+    gbbox = (glyphBboxes[glyph]! * (textStyle.fontSize!/4));
     bbox = BBox(x: x, y: y + gbbox.northEast.dy, width: gbbox.southWest.dx.abs() + gbbox.northEast.dx, height: gbbox.southWest.dy + gbbox.northEast.dy.abs());
   }
 

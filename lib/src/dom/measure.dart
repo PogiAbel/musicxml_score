@@ -1,4 +1,4 @@
-import '../generated/glyph-definitions.dart';
+import '../generated/glyph_definitions.dart';
 import 'note.dart';
 import '../extension/list_extension.dart';
 

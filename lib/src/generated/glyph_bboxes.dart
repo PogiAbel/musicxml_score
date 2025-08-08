@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'glyph-definitions.dart';
+import 'glyph_definitions.dart';
 
 class GlyphBBox {
     
@@ -23,7 +23,7 @@ class GlyphBBox {
     }
 }
 
-const GLYPH_BBOXES = <Glyph, GlyphBBox>{
+const glyphBboxes = <Glyph, GlyphBBox>{
    Glyph.fourStringTabClef: GlyphBBox(Offset(1.088, -2.016), Offset(-0.012, 2.032)),
    Glyph.sixStringTabClef: GlyphBBox(Offset(1.632, -3.056), Offset(-0.012, 2.992)),
    Glyph.accSagittal11LargeDiesisDown: GlyphBBox(Offset(1.376, -1.436), Offset(0, 0.688)),

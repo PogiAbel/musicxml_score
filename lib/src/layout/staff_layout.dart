@@ -4,8 +4,8 @@ import 'package:music_notes/music_notes.dart' as mn;
 
 import '../extension/string_extension.dart';
 import '../extension/list_extension.dart';
-import '../generated/glyph-anchors.dart';
-import '../generated/glyph-definitions.dart';
+import '../generated/glyph_anchors.dart';
+import '../generated/glyph_definitions.dart';
 import '../renderer/drawable.dart';
 import '../dom/note.dart';
 import '../dom/measure.dart';
@@ -618,7 +618,7 @@ class StaffLayout extends MusicLayout{
   LineObject generateStemLine({required double length, required  GlyphObject pos,required  bool isUp}){
     double startX;
     double startY;
-    GlyphAnchor gAnchor = GLYPH_ANCHORS[pos.glyph]!;
+    GlyphAnchor gAnchor = glyphAnchors[pos.glyph]!;
     Offset glyphOffset;
 
     if(isUp){
@@ -646,11 +646,11 @@ class StaffLayout extends MusicLayout{
     bool isUp = (items.first.itemMap.keys.first as Note).stemDirection == "up";
 
     if(isUp){
-      startX = items.first.x + GLYPH_ANCHORS[Glyph.noteheadBlack]!.stemUpSE.dx * (gc.staveDistance) - gc.mc.stemWidth;
-      endX = items.last.x + GLYPH_ANCHORS[Glyph.noteheadBlack]!.stemUpSE.dx * gc.glyphStyle.fontSize!/4;
+      startX = items.first.x + glyphAnchors[Glyph.noteheadBlack]!.stemUpSE.dx * (gc.staveDistance) - gc.mc.stemWidth;
+      endX = items.last.x + glyphAnchors[Glyph.noteheadBlack]!.stemUpSE.dx * gc.glyphStyle.fontSize!/4;
     } else {
-      startX = items.first.x + GLYPH_ANCHORS[Glyph.noteheadBlack]!.stemDownNW.dx * gc.glyphStyle.fontSize!/4;
-      endX = items.last.x + GLYPH_ANCHORS[Glyph.noteheadBlack]!.stemDownNW.dx * gc.glyphStyle.fontSize!/4 + gc.mc.stemWidth;
+      startX = items.first.x + glyphAnchors[Glyph.noteheadBlack]!.stemDownNW.dx * gc.glyphStyle.fontSize!/4;
+      endX = items.last.x + glyphAnchors[Glyph.noteheadBlack]!.stemDownNW.dx * gc.glyphStyle.fontSize!/4 + gc.mc.stemWidth;
     }
 
     List<GlyphObject> borders = isUp

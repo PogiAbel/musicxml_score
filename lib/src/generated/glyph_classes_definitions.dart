@@ -1,5 +1,7 @@
-import 'glyph-definitions.dart';
-        
+// ignore_for_file: constant_identifier_names
+
+import 'glyph_definitions.dart';
+
 enum GlyphClass {
     accidentals,
     accidentals24EDOArrows,

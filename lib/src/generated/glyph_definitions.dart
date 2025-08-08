@@ -2444,7 +2444,7 @@ enum Glyph {
     windWeakAirPressure
 }
 
-const GLYPH_FONTCODE_MAP = <Glyph, String>{
+const glyphFontcodeMap = <Glyph, String>{
     Glyph.fourStringTabClef: "\uE06E",
     Glyph.sixStringTabClef: "\uE06D",
     Glyph.accSagittal11LargeDiesisDown: "\uE30D",

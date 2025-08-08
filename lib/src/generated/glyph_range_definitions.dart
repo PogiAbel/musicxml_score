@@ -1,4 +1,6 @@
-import 'glyph-definitions.dart';
+// ignore_for_file: non_constant_identifier_names
+
+import 'glyph_definitions.dart';
 
 enum GlyphRange {
     accordion,
@@ -122,7 +124,7 @@ class GlyphRangeData {
     final List<Glyph> glyphs;
 }
 
-const GLYPHRANGE_MAP = <GlyphRange, GlyphRangeData>{
+const glyphrangeMap = <GlyphRange, GlyphRangeData>{
     GlyphRange.accordion: GlyphRangeData("Accordion", "U+E8A0", "U+E8DF", [Glyph.accdnRH3RanksPiccolo, Glyph.accdnRH3RanksClarinet, Glyph.accdnRH3RanksUpperTremolo8, Glyph.accdnRH3RanksLowerTremolo8, Glyph.accdnRH3RanksBassoon, Glyph.accdnRH3RanksOboe, Glyph.accdnRH3RanksViolin, Glyph.accdnRH3RanksImitationMusette, Glyph.accdnRH3RanksAuthenticMusette, Glyph.accdnRH3RanksOrgan, Glyph.accdnRH3RanksHarmonium, Glyph.accdnRH3RanksBandoneon, Glyph.accdnRH3RanksAccordion, Glyph.accdnRH3RanksMaster, Glyph.accdnRH3RanksTwoChoirs, Glyph.accdnRH3RanksTremoloLower8ve, Glyph.accdnRH3RanksTremoloUpper8ve, Glyph.accdnRH3RanksDoubleTremoloLower8ve, Glyph.accdnRH3RanksDoubleTremoloUpper8ve, Glyph.accdnRH3RanksFullFactory, Glyph.accdnRH4RanksSoprano, Glyph.accdnRH4RanksAlto, Glyph.accdnRH4RanksTenor, Glyph.accdnRH4RanksMaster, Glyph.accdnRH4RanksSoftBass, Glyph.accdnRH4RanksSoftTenor, Glyph.accdnRH4RanksBassAlto, Glyph.accdnLH2Ranks8Round, Glyph.accdnLH2Ranks16Round, Glyph.accdnLH2Ranks8Plus16Round, Glyph.accdnLH2RanksMasterRound, Glyph.accdnLH2RanksMasterPlus16Round, Glyph.accdnLH2RanksFullMasterRound, Glyph.accdnLH3Ranks8Square, Glyph.accdnLH3Ranks2Square, Glyph.accdnLH3RanksDouble8Square, Glyph.accdnLH3Ranks2Plus8Square, Glyph.accdnLH3RanksTuttiSquare, Glyph.accdnCombRH3RanksEmpty, Glyph.accdnCombRH4RanksEmpty, Glyph.accdnCombLH2RanksEmpty, Glyph.accdnCombLH3RanksEmptySquare, Glyph.accdnCombDot, Glyph.accdnPush, Glyph.accdnPull, Glyph.accdnRicochet2, Glyph.accdnRicochet3, Glyph.accdnRicochet4, Glyph.accdnRicochet5, Glyph.accdnRicochet6, Glyph.accdnRicochetStem2, Glyph.accdnRicochetStem3, Glyph.accdnRicochetStem4, Glyph.accdnRicochetStem5, Glyph.accdnRicochetStem6]),
     GlyphRange.analytics: GlyphRangeData("Analytics", "U+E860", "U+E86F", [Glyph.analyticsHauptstimme, Glyph.analyticsNebenstimme, Glyph.analyticsStartStimme, Glyph.analyticsEndStimme, Glyph.analyticsTheme, Glyph.analyticsThemeRetrograde, Glyph.analyticsThemeRetrogradeInversion, Glyph.analyticsThemeInversion, Glyph.analyticsTheme1, Glyph.analyticsInversion1, Glyph.analyticsChoralmelodie, Glyph.analyticsHauptrhythmus]),
     GlyphRange.arelEzgiUzdilekAeuAccidentals: GlyphRangeData("Arel-Ezgi-Uzdilek (AEU) accidentals", "U+E440", "U+E44F", [Glyph.accidentalBuyukMucennebFlat, Glyph.accidentalKucukMucennebFlat, Glyph.accidentalBakiyeFlat, Glyph.accidentalKomaFlat, Glyph.accidentalKomaSharp, Glyph.accidentalBakiyeSharp, Glyph.accidentalKucukMucennebSharp, Glyph.accidentalBuyukMucennebSharp]),

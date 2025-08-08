@@ -1,5 +1,3 @@
-library muscixml_score;
-
 export './src/renderer/score_canvas.dart';
 export './src/renderer/score_object.dart';
 export './src/parser/parser.dart';
