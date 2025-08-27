@@ -16,12 +16,15 @@ class Measure{
   List<MeasureItem> items = [];
   /// The number of the measure
   int number;
+  /// Is the measure implicit, i.e. not displayed in the counting
+  bool implicit;
 
-  Measure({this.attributes,required this.number, required this.items});
+  Measure({this.attributes,required this.number, required this.items, this.implicit = false});
 
   Measure.from(Measure measure)
       : attributes = measure.attributes,
         number = measure.number,
+        implicit = measure.implicit,
         items = measure.items.map((e) => e.copy()).toList();
 
   @override

@@ -68,6 +68,7 @@ class ScoreParser{
   /// Parses a measure xml node into a [Measure]
   Measure _parseMeasureXml(XmlNode measureXml){
     int number = measureXml.xpathEvaluate("@number").number.toInt();
+    bool implicit = measureXml.xpathEvaluate("@implicit").boolean;
     Attributes? attributes;
 
     List<MeasureItem> items = [];
@@ -94,7 +95,7 @@ class ScoreParser{
       }
     });
 
-    return Measure(attributes: attributes,number: number, items: items);
+    return Measure(attributes: attributes,number: number, items: items, implicit: implicit);
   }
 
   /// Parses a note xml node into a [Note]
