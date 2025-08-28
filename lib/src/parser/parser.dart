@@ -40,6 +40,13 @@ class ScoreParser{
     return musicXmlDocument;
   }
 
+  Future<Score> parseMxlBytes(List<int> bytes) async {
+    final archive = ZipDecoder().decodeBytes(bytes);
+    final xmlFile = archive.files.last;
+    XmlDocument musicXmlDocument = XmlDocument.parse(utf8.decode(xmlFile.content));
+    return parseDocument(musicXmlDocument);
+  }
+
   /// Parses the xml string and returns an [XmlDocument]
   XmlDocument parseXmlString(String xmlString){
     return XmlDocument.parse(xmlString);
